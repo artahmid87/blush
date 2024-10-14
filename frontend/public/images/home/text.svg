@@ -1,0 +1,22 @@
+
+<svg width="1200" height="1200" xmlns="http://www.w3.org/2000/svg">
+    <!-- Define the Circle Path -->
+    <defs>
+        <path id="circlePath" d="M 600,600 
+                                   m -500, 0 
+                                   a 500,500 0 1,1 1000,0 
+                                   a 500,500 0 1,1 -1000,0" />
+    </defs>
+
+    <!-- Circle Outline -->
+    <circle cx="600" cy="600" r="500" fill="none" />
+
+    <!-- Text along the Circle Path -->
+    <text fill="#ffcfc0" 
+             font-weight ="bold" 
+             font-family="Arial" font-size="130">
+        <textPath href="#circlePath" startOffset="32%" text-anchor="middle">
+          | Blush and Glow Blush and Glow Blush and Glow Blush and Glow |
+        </textPath>
+    </text>
+</svg>
