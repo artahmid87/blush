@@ -17,22 +17,55 @@ const Form = () => {
   const [description, setDescription] = useState('')
   const formRef = useRef()
   
-  //Date collector
+
   const dateColllect = (_, dateString) => {
     setDate(dateString)
   };
 
-  // booking mutaion form redux
   const [booking, { isLoading, isSuccess, isError, error }] = useCreateBookingMutation();
-
- // handleAppoinment
   const handleAppoinment = async (e) => {
+    e.preventDefault();
+    
     try {
-      e.preventDefault();
       await booking({ name, email, phone, subject, date, time, description }).unwrap();
-      formRef.current.reset()
-    } catch (error) {
-      console.error('Booking failed', error);
+      formRef.current.reset();  // Reset form on successful booking
+      toast.success('You will receive a confirmation Email!', {
+        position: "bottom-right",
+        autoClose: 8000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+      });
+      
+    } catch (err) {
+      console.error('Booking failed', err);
+
+     if (err.originalStatus === 406) {
+        toast.error('This Date & Time is not available', {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+          theme: "light",
+        });
+      } else {
+        toast.error('Something went wrong! Please try again!', {
+          position: "bottom-left",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+          theme: "light",
+        });
+      }
     }
   };
   return (
@@ -131,31 +164,7 @@ const Form = () => {
         {isLoading ?
           (<LoadingButton />)
           : (<BookingButton />)}
-        {isSuccess && (
-          toast.success('You will receive a confirmation Email!', {
-            toastId: '',
-            position: "bottom-left",
-            autoClose: 8000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: false,
-            draggable: false,
-            progress: undefined,
-            theme: "light",
-          }))}
-
-        {isError && (
-          toast.error('Something went wrong! please try again!', {
-            toastId: '',
-            position: "bottom-left",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: false,
-            draggable: false,
-            progress: undefined,
-            theme: "light",
-          }))}
+      
       </div>
     </form>
   )

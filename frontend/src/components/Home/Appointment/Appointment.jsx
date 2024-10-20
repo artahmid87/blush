@@ -35,7 +35,7 @@ const Appointment = () => {
     // Schedule animation
     gsap.fromTo(
       scheduleRef.current,
-      { opacity: 0, x: 100 },
+      { opacity: .9, x: 100 },
       {
         opacity: 1,
         x: 0,

@@ -1,7 +1,8 @@
 const Appointment = require("../database/model/appointment");
-// const { default: sendConfirmationEmail } = require("../middleware/nodemailer/sendMail");
 
 const nodemailer = require('nodemailer');
+
+
 const bookingController  = async (req, res, next) => {
   try {
     
@@ -10,14 +11,24 @@ const bookingController  = async (req, res, next) => {
     if(!name || !email || !phone || !subject || !date || !time ||  !description){
         return res.status(404).send("All Field are Required")
     }
-
-
+  
+    const exist = await Appointment.findOne({
+      where: {
+        date: date,
+        time: time
+      }
+    });
+    
+    // Check if both date and time match exactly
+    if (exist && exist.date === date && exist.time === time) {
+      return res.status(406).send("Not available");
+    }
+    
      const booking =  await Appointment.create({name, email , phone, subject , date, time, description})
      res.status(200).send({
       message:"success",
       booking
      })
-
 
 
   } catch (error) {
