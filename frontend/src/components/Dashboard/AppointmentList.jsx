@@ -19,7 +19,7 @@ const AppointmentList = () => {
   };
 
   return (
-    <div className='ml-60'>
+    <div className=''>
       <div className='w-full h-16 bg-green-600 py-4'>
         <h1 className='text-2xl font-bold text-center text-white'> {data?.length} Client Remain...</h1>
       </div>
@@ -47,27 +47,27 @@ const AppointmentList = () => {
                   cancelText="No"
                 >
                   <Button
-                    className='px-4 py-1 bg-rose-500 rounded-3xl text-white hover:bg-white hover:text-red-500 transition-all mb-4'
+                    className='px-4 py-1 bg-rose-500 rounded-3xl text-white hover:bg-white hover:text-red-500 transition-all'
                   >
                     Delete
                   </Button>
-                  <Link href = {`/dashboard/confirmationBooking/${record.id}`}
-               className='px-4 py-1 bg-yellow-400 rounded-3xl text-white hover:bg-white hover:text-red-500 transition-all '
-             >
-               Confirm
-             </Link>
-                 
+
                 </Popconfirm>
-               
-               
+                <Link
+                  href={{
+                    pathname: '/dashboard/confirmationBooking/[id]',
+                    query: { id: record.id },
+                  }}
+                  as={`/dashboard/confirmationBooking/${record.id}`} // This will generate the correct dynamic route
+                  className='px-4 py-2 bg-yellow-400 rounded-3xl text-white hover:bg-white hover:text-red-500 transition-all'
+                >
+                  Confirm
+                </Link>
+
               </Space>
-              
-            
             )}
-            
-            
           />
-            
+
         </Table>
       </div>
     </div>

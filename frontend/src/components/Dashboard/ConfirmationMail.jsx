@@ -54,11 +54,6 @@ const ConfirmationMail = () => {
       router.push('/dashboard');  // Redirect after successful update
     } catch (error) {
       console.error('Update failed:', error);
-      if (error.data && error.data.message) {
-        alert(`Error: ${error.data.message}`);
-      } else {
-        alert('An unknown error occurred.');
-      }
     }
   };
 
@@ -66,13 +61,13 @@ const ConfirmationMail = () => {
   if (error) return <div>Error fetching booking details.</div>;
 
   return (
-    <div className='w-full h-full'>
+    <div className='w-full h-full py-10'>
       <Container>
-        <Link href={'/dashboard'}>Back to Dashboard</Link>
+        <Link className=' bg-blue-500 py-2 px-4 rounded-s-lg text-white hover:bg-white hover:text-blue-500 transition-all' href={'/dashboard'}> Back to Dashboard</Link>
         <h1 className='text-center text-4xl text-tertiary py-8 font-bold'>
           Do you want to Change?
         </h1>
-        <form onSubmit={handleSubmit} className='w-full h-full flex flex-col justify-center'>
+        <form onSubmit={handleSubmit} className='w-full h-full flex flex-col justify-center pb-20'>
           <div className="flex flex-col gap-4 md:flex-row justify-between items-center">
             {/* Name */}
             <div className="w-full py-2">
@@ -82,7 +77,7 @@ const ConfirmationMail = () => {
                 className="py-4 px-5 w-full border-b border-primary text-secondery"
                 onChange={(e) => setName(e.target.value)}
                 value={name}
-                disabled  
+                disabled
                 required
               />
             </div>
@@ -124,8 +119,8 @@ const ConfirmationMail = () => {
                 disabled
                 required
               />
-                {/* <option value={subject}>{subject}</option> */}
-              
+              {/* <option value={subject}>{subject}</option> */}
+
             </div>
           </div>
 
@@ -164,10 +159,18 @@ const ConfirmationMail = () => {
             ></textarea>
           </div>
 
-          <button type="submit" className='bg-red-500 py-2 px-7'>
-            Confirm
-          </button>
+          <div className='w-full flex justify-center items-center'>
+            <button type="submit" className='bg-green-500 py-2 px-7 w-1/2 rounded-full text-white hover:bg-green-200 hover:text-green-700 font-bold'>
+              {
+                updateLoading ? <p>Wait...</p> : <p>Confirm</p>
+              }
+            </button>
+          </div>
+          {
+          isError && <h1 className='text-red-600 text-center py-4'>Something went wrong!</h1>
+         }
         </form>
+        
       </Container>
     </div>
   );

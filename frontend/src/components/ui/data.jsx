@@ -71,46 +71,7 @@ export const ServiceData = [
             },
         ]
     },
-    {
-        id: 1,
-        icon: <FacialIcon />,
-        title: 'FACIAL',
-
-        pricingPlan: [
-            {
-                name: "Regular Facial",
-                price: "$50"
-            },
-            {
-                name: "Antiaging Facial ",
-                price: "$70"
-            },
-            {
-                name: "Acne Treatment",
-                price: "$70"
-            },
-            {
-                name: "Microdermabrasion",
-                price: "$70"
-            },
-            {
-                name: "Hydra Facial",
-                price: "$90"
-            },
-            {
-                name: "Face Lifting",
-                price: "$90"
-            },
-            {
-                name: "Chemical Peel",
-                price: "$80"
-            },
-            {
-                name: "Microneedling",
-                price: "$100"
-            },
-        ]
-    },
+   
     {
         id: 2,
         icon: <EyebrowIcon />,

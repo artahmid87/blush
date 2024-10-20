@@ -132,7 +132,6 @@ const removeBooking = async(req, res, next) =>{
 
 
 // send confirmation mail
-
 const sendConfirmationEmail = async (name, email, date, time, description) => {
 
   let transporter = nodemailer.createTransport({
@@ -143,7 +142,6 @@ const sendConfirmationEmail = async (name, email, date, time, description) => {
       }
   });
 
-  // Email content
   let mailOptions = {
       from: 'artahmid87@gmail.com', 
       to: email,                     
@@ -154,7 +152,7 @@ const sendConfirmationEmail = async (name, email, date, time, description) => {
           <p><strong>Date: ${date}</strong></p>
           <p><strong>Time: ${time}</strong></p>
           <p><strong>${description}</strong></p>
-          <p>Thank you for booking with us!</p>
+          <p>Stay with us!</p>
       `
   };
 

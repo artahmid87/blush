@@ -18,7 +18,7 @@ const Gallery = () => {
   };
 
   return (
-    <div className='ml-60'>
+    <div className=''>
       <div className='w-full h-16 bg-green-600 py-4 '>
         <h1 className='text-2xl font-bold text-center text-white'> {data?.length} Gallery Images</h1>
       </div>
