@@ -11,6 +11,20 @@ export const Api = createApi({
             query:()=> '/appointment/get/customer'
         }),
 
+        
+        getBookingById: builder.query({
+          query: (id) => `/appointment/get/${id}`,
+        }),
+    
+        // Update booking with sending a confirmation email
+        updateBooking: builder.mutation({
+          query: ({ id, booking }) => ({
+            url: `/appointment/confirmBooking/${id}`,
+            method: 'PUT',
+            body: booking,
+          }),
+        }),
+        
         // review get api
         review: builder.query({
             query:()=> '/review'
@@ -129,6 +143,8 @@ export const {
   useUpdateGalleryMutation,
   useGetGalleryByIdQuery,
   useDeleteGalleryMutation,
+  useGetBookingByIdQuery,
+  useUpdateBookingMutation,
   } = Api
 
 

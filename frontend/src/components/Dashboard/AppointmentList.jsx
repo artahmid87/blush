@@ -1,6 +1,7 @@
 import { useBookingListQuery, useDeleteBookingMutation } from '@/redux/api/Api'
 import { Space, Table } from 'antd/dist/antd';
 import { Button, Popconfirm } from 'antd/dist/antd';
+import Link from 'next/link';
 const { Column } = Table;
 
 const AppointmentList = () => {
@@ -46,14 +47,27 @@ const AppointmentList = () => {
                   cancelText="No"
                 >
                   <Button
-                    className='px-4 py-1 bg-rose-500 rounded-3xl text-white hover:bg-white hover:text-red-500 transition-all'
+                    className='px-4 py-1 bg-rose-500 rounded-3xl text-white hover:bg-white hover:text-red-500 transition-all mb-4'
                   >
                     Delete
                   </Button>
+                  <Link href = {`/dashboard/confirmationBooking/${record.id}`}
+               className='px-4 py-1 bg-yellow-400 rounded-3xl text-white hover:bg-white hover:text-red-500 transition-all '
+             >
+               Confirm
+             </Link>
+                 
                 </Popconfirm>
+               
+               
               </Space>
+              
+            
             )}
+            
+            
           />
+            
         </Table>
       </div>
     </div>

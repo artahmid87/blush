@@ -1,6 +1,7 @@
 const Appointment = require("../database/model/appointment");
+// const { default: sendConfirmationEmail } = require("../middleware/nodemailer/sendMail");
 
-
+const nodemailer = require('nodemailer');
 const bookingController  = async (req, res, next) => {
   try {
     
@@ -10,14 +11,6 @@ const bookingController  = async (req, res, next) => {
         return res.status(404).send("All Field are Required")
     }
 
-    //  const sameDate = await Appointment.findOne({
-    //   where:{
-    //     date:date
-    //   } 
-    //  })
-    //  if(existingDateAndTime){
-    //   return res.status(404).send("Appointment not available!")
-    //  }
 
      const booking =  await Appointment.create({name, email , phone, subject , date, time, description})
      res.status(200).send({
@@ -45,13 +38,74 @@ const getBookingContoller  =  async (req, res, next) => {
 }
 
 
+const getSingleBooking = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const booking = await Appointment.findOne({
+      where: {
+        id: id,
+      },
+    });
+
+    if (!booking) {
+      return res.status(404).json({
+        message: "Booking not found!",
+      });
+    }
+
+    res.status(200).json(booking);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const ConfirmationMail = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { name, email, phone, subject, date, time, description } = req.body;
+
+    // Validation: Ensure all fields are provided
+    if (!name || !email || !phone || !subject || !date || !time || !description) {
+      return res.status(400).json({ message: "All fields are required" });
+    }
+
+    // Find the booking by ID
+    const booking = await Appointment.findOne({
+      where: {
+        id: id,
+      },
+    });
+
+    if (!booking) {
+      return res.status(404).json({
+        message: "Booking not found!",
+      });
+    }
+
+    // Update the booking
+    await Appointment.update(
+      { name, email, phone, subject, date, time },
+      { where: { id } }
+    );
+
+    await sendConfirmationEmail(name, email, date, time, description);
+
+    res.status(200).json({ message: "Booking updated successfully" });
+  } catch (error) {
+    next(error);
+  }
+};
+
+
+
+
+
 const removeBooking = async(req, res, next) =>{
 
   try {
     const {id} = req.params
-    console.log(id)
   
-  const booking = Appointment.findOne({
+  const booking =await Appointment.findOne({
     where:{
       id:id
     }
@@ -75,5 +129,37 @@ const removeBooking = async(req, res, next) =>{
   }
 }
 
-module.exports = {bookingController, getBookingContoller , removeBooking}
 
+
+// send confirmation mail
+
+const sendConfirmationEmail = async (name, email, date, time, description) => {
+
+  let transporter = nodemailer.createTransport({
+      service: 'gmail', 
+      auth: {
+          user: 'artahmid87@gmail.com', 
+          pass: 'czyi mpdz ptic rozv',  
+      }
+  });
+
+  // Email content
+  let mailOptions = {
+      from: 'artahmid87@gmail.com', 
+      to: email,                     
+      subject: 'Appointment Confirmation', 
+      html: `
+          <h2>Hello ${name},</h2>
+          <p>Your appointment has been confirmed for the following date and time:</p>
+          <p><strong>Date: ${date}</strong></p>
+          <p><strong>Time: ${time}</strong></p>
+          <p><strong>${description}</strong></p>
+          <p>Thank you for booking with us!</p>
+      `
+  };
+
+
+  await transporter.sendMail(mailOptions);
+};
+
+module.exports = {bookingController, getBookingContoller , removeBooking ,ConfirmationMail, getSingleBooking}

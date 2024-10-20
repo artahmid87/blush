@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const Admin = require('../database/model/admin.db');
+const { JWRKEY } = require('../config/env');
 require('dotenv').config();
 
 const login = async (req, res) => {
@@ -17,7 +18,7 @@ const login = async (req, res) => {
     return res.status(400).json({ message: 'Incorrect password' });
   }
 
-  const token = jwt.sign({ id: user.id, email: user.email }, 'secretKey', { expiresIn: '1h' });
+  const token = jwt.sign({ id: user.id, email: user.email }, JWRKEY, { expiresIn: '10h' });
 
   return res.json({ token });
 

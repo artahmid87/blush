@@ -7,6 +7,7 @@ import {Autoplay, Pagination, Navigation } from 'swiper/modules';
 import 'swiper/css';
 import Container from '../ui/Container';
 import { CalenderIcon } from '../ui/icon';
+import Link from 'next/link';
 
 const Header = () => {
   const slidesRef = useRef([]);
@@ -68,19 +69,16 @@ const Header = () => {
                 <p className="mt-8 text-md md:text-xl text-tertiary" ref={descriptionRef}>
                   {item.describe}
                 </p>
-                <a href="#appointment">
-                  <button
-                    ref={buttonRef}
-                    className="group hover:bg-primary bg-white transition-all py-2 mt-10 px-8 flex gap-2 justify-center items-center rounded-full shadow-lg"
-                  >
+                <Link href="#appointment"  className="group hover:bg-primary bg-white transition-all flex  gap-2 justify-center items-center mt-10 py-2  px-8  rounded-full shadow-lg cursor-pointer" ref={buttonRef}>
+                
                     <span className="flex justify-center items-center text-2xl group-hover:text-primary text-white transition-all w-8 h-8 md:w-10 md:h-10 group-hover:bg-white bg-primary rounded-full">
                       <CalenderIcon/>
                     </span>
                     <span className="text-md md:text-xl transition-all group-hover:text-white text-primary font-secondery">
                       Make An Appointment
                     </span>
-                  </button>
-                </a>
+             
+                </Link>
               </div>
 
     
@@ -104,9 +102,9 @@ const Header = () => {
           </div>
           </Container>
                
-          <div className='invisible lg:visible w-[100%] absolute -bottom-4 left-0' style={{
+          <div className='invisible lg:visible w-[100%] absolute -bottom-8 left-0' style={{
                 zIndex:9
-            }}> <img className='w-full md:h-32' src="/images/about/2.png" alt="" /></div>
+            }}> <img className='w-full md:h-28' src="/images/about/2.png" alt="" /></div>
         </SwiperSlide>
       ))}
     </Swiper>

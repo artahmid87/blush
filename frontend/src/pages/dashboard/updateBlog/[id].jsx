@@ -26,7 +26,7 @@ import { useEffect } from "react"
   }, [router]);
 
   return (
-   <section>
+   <section >
     <UpdateBlog blogData ={blogData} />
    </section>
   )

@@ -22,7 +22,7 @@ export const HomeServiceData = [
 
     },
     {
-        id: 3,
+        id: 4,
         icon: <WaxingIcon />,
         title: 'Waxing & Threading',
          details:"Smooth, precise hair removal for silky, soft skin."

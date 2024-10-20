@@ -46,7 +46,7 @@ const Feature = () => {
                                     </i>
                                 </div>
                                 <div className ="text-center">
-                                    <h1 className='font-secondery text-2xl text-tertiary py-6'>{item.title}</h1>
+                                    <h1 className='font-secondery text-2xl md:text-4xl text-tertiary py-6'>{item.title}</h1>
                                     <p className='text-tertiary text-md'>{item.details}</p>
                                 </div>
                             </div>

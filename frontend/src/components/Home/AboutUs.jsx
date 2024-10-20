@@ -4,6 +4,7 @@ import { RightArrowIcon } from "../ui/icon";
 import { useRouter } from "next/router";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { useGetBookingByIdQuery } from "@/redux/api/Api";
 
 
 if (typeof window !== "undefined") {
@@ -16,6 +17,7 @@ const AboutUs = () => {
   const textRef = useRef(null);
   const numberRef = useRef(null);
   const [count, setCount] = useState(0);
+
 
 
   useEffect(() => {
@@ -129,7 +131,7 @@ const AboutUs = () => {
                 <span className="text-tertiary">Beauty and</span>
                 <span className="text-primary " > Spa <br /> Center</span>
               </div>
-              <h1 className="opacity-20 font-bold text-4xl -rotate-90 absolute top-32 -left-28">About us</h1>
+              <p className="opacity-20 font-bold text-4xl -rotate-90 absolute top-32 -left-28">About us</p>
             </h1>
             <p className="font-semibold italic text-tertiary font-secondery lg:text-[24px] pt-6">
               PROFESSIONAL TREATMENT WITH EXPERT

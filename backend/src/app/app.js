@@ -12,7 +12,6 @@ const Appointment = require('../database/model/appointment.js');
 const { AppointmentRouter } = require('../routers/AppointmentRouter.js'); 
 const Admin = require('../database/model/admin.db.js'); 
 const adminRouter = require('../routers/adminRouter.js'); 
-const authenticateToken = require('../middleware/admin/adminAuth.js'); 
 const Review = require('../database/model/review.db.js'); 
 const { ReviewRouter } = require('../routers/reviewRouter.js'); 
 const Gallery = require('../database/model/gallery.db.js'); 
@@ -47,9 +46,8 @@ app.use(helmet.contentSecurityPolicy({
     },
 }));
 
-app.use(compression()); 
 
-
+app.use(compression());
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: true })); 
 app.use(express.static(path.join(__dirname, "../../public"))); 

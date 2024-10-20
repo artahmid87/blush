@@ -22,7 +22,7 @@ import React, { useEffect } from 'react'
   }, [router]);
   return (
    <DashboardLayout>
- <BlogCrud/>
+    <BlogCrud/>
    </DashboardLayout>
    
   )

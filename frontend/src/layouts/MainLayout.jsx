@@ -8,10 +8,11 @@ const MainLayout = ({ children }) => {
 
   const DynamicUpdateBlogRoute = pathname !== "/dashboard/updateBlog/[id]";
   const DynamicUpdateGalleryRoute =  pathname !== "/dashboard/gallery/[id]";
+  const DynamicConfirmationMailRoute =  pathname !== "/dashboard/confirmationBooking/[id]";
  
   return (
     <>
-     {pathname !== "/login" &&  pathname !== "/dashboard"  && pathname !== "/dashboard/bookingList" && pathname !== "/dashboard/blog" && pathname !== "/dashboard/newPost" && pathname !== "/dashboard/updateBlog" && DynamicUpdateBlogRoute && pathname !== "/dashboard/uploadGallery" && pathname !== "/dashboard/gallery" && DynamicUpdateGalleryRoute && (
+     {pathname !== "/login" &&  pathname !== "/dashboard"  && pathname !== "/dashboard/bookingList" && pathname !== "/dashboard/blog" && pathname !== "/dashboard/newPost" && pathname !== "/dashboard/updateBlog" && DynamicUpdateBlogRoute && pathname !== "/dashboard/uploadGallery" && pathname !== "/dashboard/gallery" && DynamicUpdateGalleryRoute && DynamicConfirmationMailRoute && (
         <>
           <div className="size-5 fixed hidden lg:block left-0 top-0 bg-blue rounded-full"
             style={{ zIndex: 99999 }} />
@@ -20,7 +21,7 @@ const MainLayout = ({ children }) => {
       )}
       {children}
 
-      {pathname !== "/login" && pathname !== "/dashboard" && pathname !== "/dashboard/bookingList" && pathname !== "/dashboard/blog" &&  pathname !== "/dashboard/newPost" && pathname !== "/dashboard/updateBlog" && DynamicUpdateBlogRoute && pathname !== "/dashboard/uploadGallery" && pathname !== "/dashboard/gallery" && DynamicUpdateGalleryRoute && (
+      {pathname !== "/login" && pathname !== "/dashboard" && pathname !== "/dashboard/bookingList" && pathname !== "/dashboard/blog" &&  pathname !== "/dashboard/newPost" && pathname !== "/dashboard/updateBlog" && DynamicUpdateBlogRoute && pathname !== "/dashboard/uploadGallery" && pathname !== "/dashboard/gallery" && DynamicUpdateGalleryRoute && DynamicConfirmationMailRoute && (
         <>
           <Footer />
           <div className="fixed bottom-8 right-8 border-[4.5px] bg-white text-blue rounded-full cursor-pointer transition-all flex justify-center items-center size-14 lg:size-20 duration-300"
