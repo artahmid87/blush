@@ -14,7 +14,7 @@ import Link from "next/link"
     }{
         isError && (<div className="text-center py-20 text-7xl flex flex-col justify-center items-center"> <h1>Something Went Wrong!</h1> <h1>Please! try again</h1></div>)
     }
-    <div className='py-32 bg-[#fff6f4]'>
+    <div className='py-32 bg-white'>
       <Container>
         <div>
           {/* <HeadingComponent headingData ={headingData}/> */}
@@ -26,7 +26,7 @@ import Link from "next/link"
                  {/* blog images */}
                 <img className='w-full h-[400px]' 
                 src={"http://localhost:5000/images/blog_img/"+item?.file} alt={item?.title}/>
-                 <div className='absolute bottom-[-10%] left-0 w-[80%] h-[300px] bg-white p-6'>
+                 <div className='absolute bottom-[-10%] left-0 w-[80%] h-[300px] bg-gray-100 p-6'>
 
                   {/*Upload date */}
                  <p className="text-[16px] text-primary pt-4 ">{new Date(item.createdAt).toLocaleDateString('en-US', {

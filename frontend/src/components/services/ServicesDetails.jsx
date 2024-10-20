@@ -17,7 +17,7 @@ import HeadingComponent from '../ui/reusableComponent/HeadingComponent'
 
 
   return (
-    <div className='overflow-hidden py-20'>
+    <div className='overflow-hidden py-20 bg-white'>
         <Container>
         <HeadingComponent headingData={headingData} />
  

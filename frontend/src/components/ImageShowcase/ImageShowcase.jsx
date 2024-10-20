@@ -18,7 +18,7 @@ const ImageShowCase = () => {
 
 
   return (
-    <div className="container mx-auto py-10">
+    <div className="container mx-auto py-10 bg-white">
        {
         isLoading && (<div className="text-center py-20 text-7xl flex justify-center items-center"> Loading....</div>)
     }{

@@ -61,7 +61,7 @@ const ContactUs = () => {
   ];
 
   return (
-    <div className="">
+    <div className="bg-white">
       <Container>
         <HeadingComponent headingData={headingData} />
 
